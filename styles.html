@@ -1,0 +1,84 @@
+<link rel="stylesheet" href="https://ssl.gstatic.com/docs/script/css/add-ons1.css">
+<style>
+
+  body {
+    background-color: #EAEAEA;
+  }
+  #form {
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    height: auto;
+    border: 2px solid #282828;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 0.2fr 1.8fr;
+    grid-auto-columns: 1fr;
+    gap: 5%;
+    grid-auto-flow: row;
+    background-color: #fafafa;
+}
+
+.form-container {  
+  margin-left: auto;
+  margin-right: auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    "label-name name"
+    "label-email email"
+    "label-typeDoc doc"
+    "label-numDoc docS"
+    "label-company company";
+
+}
+
+  
+  .title-container {
+    background-color: #016D38;
+    border-bottom: 2px solid black;
+    text-align: center;
+    width:100%;
+  }
+
+  .title {
+    color: #fafafa;
+    font-weight: bold;
+  }
+  
+ 
+  label {
+    color: #282828;
+    font-weight: bold;
+  }
+
+  .required{ 
+    color: red !important; 
+    height: bold; 
+  }
+
+  input, select {
+    background-color: #EAEAEA !important;
+    width: 80%;
+    border-radius: 25px !important;
+  }
+
+  button {
+    margin: auto;
+    width: 70%;
+    border-radius: 25px !important;
+  }
+
+  #message{
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  #error {
+    background-color: #DA0C0C;
+  
+  }
+
