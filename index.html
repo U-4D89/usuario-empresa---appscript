@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top">
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- call the include function -->
+    <?!= include('styles'); ?>
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="form">
+      <div class="title-container">
+        <h3 class="title"> Registre su información </h3>
+      </div>
+
+      <form class="form-container">
+      
+        <div class="label-name">
+          <label for="nombre">Nombre <sup class="required">*</sup> </label>
+        </div>
+        <div class="name">
+          <input type="text" id="nombre" name="nombre"/> 
+        </div>
+        
+
+        <div class="label-email">
+          <label for="email">Correo electronico <sup class="required">*</sup> </label>
+        </div>
+        <div class="email">
+          <input id="email" type="email" name="email"/>
+        </div>
+
+
+        <div class="label-typeDoc">
+          <label for="tipo-documento">Seleccione su tipo de documento <sup class="required">*</sup> </label>
+        </div>
+        <div class="doc">
+          <!-- tipoDocumentos from codigo.gs -->
+            <select id="tipo-documento" name="tipo-documento">
+              <option value=""> </option>
+              <? tipoDocumentos.forEach( tipo => { ?> 
+                <option value="<?= tipo ?>"> <?=tipo?>  </option>
+              <? }); ?>
+            </select>
+        </div>
+
+
+        <div class="label-numDoc">
+          <label for="numero-documento">Número de documento <sup class="required">*</sup> </label>
+        </div>
+        <div class="docS">
+          <input id="numero-documento" type="text" name="numero-documento" />
+        </div>
+
+
+        <div class="label-company">
+          <label for="empresa">Empresa a la que pertenece <sup class="required">*</sup> </label>
+        </div>
+        <div class="company">
+          <!-- empresas from codigo.gs -->
+          <select id="empresa" name="empresa">
+            <option value=""> </option>
+            <? empresas.forEach( empresa => { ?> 
+              <option value="<?= empresa ?>"> <?=empresa?>  </option>
+            <? }); ?>
+          </select>
+        </div> 
+        <br>
+
+        
+        <div class="enviar">
+          <br>
+          <button class="action" id="enviar">Enviar</button>
+        </div>
+      </form>
+
+      <br>
+      <br>
+    </div>
+    <div>
+      <div id="message"> </div>
+    </div>
+    
+
+    <!-- call the include function -->
+    <?!= include('script'); ?>
+  </body>
+</html>
