@@ -1,0 +1,98 @@
+<script>
+  /*
+      1 - Crear el objeto usuario al enviar el formulario
+      2 - Validar informacion
+          - NO debe haber ningun campo vacio
+          - el correo debe tener "@" ".com" [ ? ]
+          - el tipo de documento debe estar en la lista de tipos de documentos
+          - la empresa debe deber estar en la lista de empresas 
+      3 - Si es valida la informacion enviar a spreedsheet, 
+            alertar que se ha enviado exitosamente.
+          Si la informacion es valida
+            alertar sobre el tipo de error
+      4 - Limpiar formulario
+    */
+
+  document.addEventListener('DOMContentLoaded', function(){
+    
+    document.querySelector('.form-container').addEventListener('submit', (evt) => {
+
+      evt.preventDefault();
+      const user = { 
+        nombre: "",
+        email: "",
+        tipoDocumento: "",
+        numeroDocumento: "",
+        empresa: ""
+      }
+
+      user.nombre = document.querySelector("#nombre").value;
+      user.email = document.querySelector("#email").value;
+      user.tipoDocumento = document.querySelector("#tipo-documento").value;
+      user.numeroDocumento = document.querySelector("#numero-documento").value;
+      user.empresa = document.querySelector("#empresa").value;
+
+      isValid(user);
+    })
+  })
+
+  function isValid(user) {
+
+    const typesDocs = ['registro civil','tarjeta de identidad', 'cédula de ciudadanía', 'cédula de extranjería'];
+    const companies = ['Seguros Bolívar', 'Davivienda', 'Constructora Bolívar'];
+  
+    if (user) {
+      if (!user.nombre) {
+        let error = "Por favor ingrese su nombre.";
+        displayError(error);
+      }
+
+      if (!user.email ) {
+        let error = "Por favor ingrese su correo electrónico.";
+        displayError(error);
+      }
+
+      if (!typesDocs.includes(user.tipoDocumento)) {
+        let error = "Por favor ingrese un tipo de documento válido.";
+        displayError(error);
+      }
+
+      if(!numeroDocumento) {
+        let error = "Por favor ingrese su número de documento.";
+        displayError(error);
+      }
+
+      if (!companies.includes(user.empresa)){
+        let error = "Por favor ingrese una empresa válida.";
+        displayError(error);
+      }
+
+      google.script.run
+      .withSuccessHandler(stateSuccessfull)
+      .withFailureHandler(displayError(err))
+      .uploadData(user); //revisar "codigo.gs"
+
+    } else {
+      throw("Ingrese los datos requeridos por favor.")
+    }
+  }
+
+    function displayError(err) {
+    Swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: `${err}`
+        })
+  }
+
+  function stateSuccessfull(){
+    Swal.fire(
+      'Registrado',
+      'Todo salió como se esperaba, gracias!',
+      'success'
+                  )
+      document.querySelector('.form-container').reset()
+  }
+
+
+</script>
